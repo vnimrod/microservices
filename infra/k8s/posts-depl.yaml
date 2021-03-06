@@ -1,0 +1,18 @@
+#deployment - depl
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  replicas: 1 #number of pods running some particular images
+  selector: #the selector saying - take the different pods that have been created, find all the pods with label of app: posts and expose those pods to the outside world
+    matchLabels:
+      app: posts # kajsdfn: aldskmf also good
+  template: # where we specify the exact configuration of a pod that we want this deployment will create
+    metadata: # config that saying we want a pod with a label of app:posts
+      labels:
+        app: posts
+    spec: # describing the specification or the config options for the pod we are trying to make
+      containers:
+        - name: posts
+          image: nimrodweinstein/posts:latest #docker assume that this is the latest version, equal to :  image: nimrodweinstein/posts:latest
